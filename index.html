@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Like Me?</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: #555;
+            margin-bottom: 30px;
+            animation: zoomIn 1s ease forwards;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .button {
+            padding: 12px 24px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            color: #fff;
+        }
+
+        #yesButton {
+            background-color: #28a745;
+        }
+
+        #yesButton:hover {
+            background-color: #218838;
+        }
+
+        #noButton {
+            background-color: #dc3545;
+            position: absolute;
+        }
+
+        #noButton:hover {
+            transform: scale(1.1);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .popup p {
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Do you like me?</h2>
+    <button id="yesButton" class="button">Yes</button>
+    <button id="noButton" class="button">No</button>
+</div>
+
+<div id="popup" class="popup">
+    <p>Thanks for accepting! 😊</p>
+</div>
+
+<script>
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const popup = document.getElementById('popup');
+
+    yesButton.addEventListener('click', () => {
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 2000);
+    });
+
+    noButton.addEventListener('mouseover', () => {
+        const maxX = window.innerWidth - noButton.offsetWidth - 20;
+        const maxY = window.innerHeight - noButton.offsetHeight - 20;
+        const x = Math.floor(Math.random() * maxX);
+        const y = Math.floor(Math.random() * maxY);
+        noButton.style.left = `${x}px`;
+        noButton.style.top = `${y}px`;
+    });
+</script>
+
+</body>
+</html>
